@@ -6,7 +6,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.qa.opencart.base.BaseTest;
-import com.qa.opencart.utils.ExcelUtils;
+import com.qa.opencart.utils.CSVUtil;
+import com.qa.opencart.utils.ExcelUtil;
 import com.qa.opencart.utils.StringUtils;
 
 public class RegisterPageTest extends BaseTest {
@@ -17,12 +18,26 @@ public class RegisterPageTest extends BaseTest {
 	}
 	
 	@DataProvider
-	public Object[][] getUserDataFromSheet(){
-		Object[][] data = ExcelUtils.getTestData("user_registration");
+	public Object[][] getUserDataFromExcelSheet(){
+		Object[][] data = ExcelUtil.getTestData("user_registration");
 		return data;
 	}
 	
-	@Test (dataProvider="getUserDataFromSheet")
+	@DataProvider
+	public Object[][] getUserDataFromCSV(){
+		Object[][] data = CSVUtil.csvData("UserRegistrationTestData");
+		return data;
+	}
+	
+	/*
+	 * @Test (dataProvider="getUserDataFromExcelSheet") public void
+	 * userRegistrationTest(String fName, String lName, String tel, String password,
+	 * String subscribeYesOrNo) { boolean isRegistrationSuccess =
+	 * registerPage.doUserRegistration(fName, lName, StringUtils.generateEmail(),
+	 * tel, password, subscribeYesOrNo); Assert.assertTrue(isRegistrationSuccess); }
+	 */
+	
+	@Test (dataProvider="getUserDataFromCSV")
 	public void userRegistrationTest(String fName, String lName, String tel, String password, String subscribeYesOrNo) {
 		boolean isRegistrationSuccess = registerPage.doUserRegistration(fName, lName, StringUtils.generateEmail(), tel, password, subscribeYesOrNo);
 		Assert.assertTrue(isRegistrationSuccess);

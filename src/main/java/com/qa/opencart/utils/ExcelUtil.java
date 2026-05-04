@@ -9,7 +9,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-public class ExcelUtils {
+public class ExcelUtil {
 
 	private static final String TEST_DATA_SHEET_PATH = "src/test/resources/testdata/UserRegistrationTestData.xlsx";
 	private static Workbook workbook;
