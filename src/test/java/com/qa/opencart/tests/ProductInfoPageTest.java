@@ -11,7 +11,9 @@ public class ProductInfoPageTest extends BaseTest{
 
 	@BeforeClass
 	public void productInfoPageSetup() throws InterruptedException {
-		accountsPage = loginPage.doLogin("admin@gmail.com", "admin@123");
+		String username = prop.getProperty("username");
+		String password = prop.getProperty("password");
+		accountsPage = loginPage.doLogin(username, password);
 	}
 	
 	@DataProvider
