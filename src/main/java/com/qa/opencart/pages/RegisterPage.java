@@ -35,7 +35,7 @@ public class RegisterPage {
 		elementUtils = new WebElementUtils(driver);
 	}
 	
-	public boolean doUserRegistration(String fName, String lName, String email, String tel, String password, Boolean wantToSubscribe) {
+	public boolean doUserRegistration(String fName, String lName, String email, String tel, String password, String subscribeYesOrNo) {
 		elementUtils.waitForElementVisibility(firstName, AppConstants.DEFAULT_SHORT_WAIT).sendKeys(fName);
 		elementUtils.doSendKeys(lastName, lName);
 		elementUtils.doSendKeys(this.email, email);
@@ -43,7 +43,7 @@ public class RegisterPage {
 		elementUtils.doSendKeys(this.password, password);
 		elementUtils.doSendKeys(confirmPassword, password);
 		
-		if(wantToSubscribe) {
+		if(subscribeYesOrNo.equalsIgnoreCase("yes")) {
 			elementUtils.doClick(subscribeYes);
 		} else {
 			elementUtils.doClick(subscribeNo);
@@ -55,6 +55,9 @@ public class RegisterPage {
 		WebElement successMsgEle = elementUtils.waitForElementVisibility(successMsg, AppConstants.DEFAULT_SHORT_WAIT);
 		String actualSuccessMsg = elementUtils.getElementText(successMsgEle);
 		System.out.println("Registration Success Message is: "+ actualSuccessMsg);
+		
+		elementUtils.doClick(logoutLink);
+		elementUtils.doClick(registerLink);
 		
 		if(actualSuccessMsg.equals(AppConstants.USER_REGISTRATION_SUCCESS_MSG)) {
 			return true;
