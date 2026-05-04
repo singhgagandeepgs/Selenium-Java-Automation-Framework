@@ -22,6 +22,8 @@ public class LoginPage {
 	private final By forgotPwdLink = By.xpath("(//a[text()='Forgotten Password'])[1]");
 	private final By header = By.tagName("h2");
 	
+	private final By registerLink = By.xpath("(//a[text()='Register'])[2]");
+	
 	// Constructor:
 	public LoginPage(WebDriver driver) {
 		this.driver  = driver;
@@ -64,6 +66,11 @@ public class LoginPage {
 		
 		//return driver.getTitle();
 		return new AccountsPage(driver);
+	}
+	
+	public RegisterPage navigateToRegisterPage() {
+		elementUtils.waitForElementPresence(registerLink, AppConstants.DEFAULT_SHORT_WAIT).click();
+		return new RegisterPage(driver);
 	}
 
 }
