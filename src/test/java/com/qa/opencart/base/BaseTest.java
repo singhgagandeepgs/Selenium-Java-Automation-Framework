@@ -3,6 +3,8 @@ package com.qa.opencart.base;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
@@ -43,6 +45,13 @@ public class BaseTest {
 		
 		driver = df.initDriver(prop);
 		loginPage = new LoginPage(driver);
+	}
+	
+	@AfterMethod
+	public void attachScreenshot(ITestResult result) {
+		if(!result.isSuccess()) {
+			ChainTestListener.embed(df.getScreenshotAsFile(), "image/png");
+		}
 	}
 	
 	@AfterTest
