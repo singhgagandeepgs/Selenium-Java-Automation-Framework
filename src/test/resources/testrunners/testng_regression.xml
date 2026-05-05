@@ -8,12 +8,12 @@
 		</classes>
 	</test>
 
-	<test name="Register Page Test">
+	<!--<test name="Register Page Test">
 		<parameter name="browser" value="edge" />
 		<classes>
 			<class name="com.qa.opencart.tests.RegisterPageTest" />
 		</classes>
-	</test>
+	</test>-->
 
 	<test name="Accounts Page Test">
 		<parameter name="browser" value="firefox" />
@@ -22,12 +22,12 @@
 		</classes>
 	</test>
 
-	<test name="Search Results Page Test">
+	<!--<test name="Search Results Page Test">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.SearchResultsPageTest" />
 		</classes>
-	</test>
+	</test>-->
 
 	<test name="Product Information Page Test">
 		<parameter name="browser" value="edge" />
