@@ -56,7 +56,7 @@ public class DriverFactory {
 		return getDriver();
 	}
 	
-	private WebDriver getDriver() {
+	public static WebDriver getDriver() { // Try to make it private later
 		return tlDriver.get();
 	}
 	

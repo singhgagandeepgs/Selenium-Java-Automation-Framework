@@ -1,12 +1,19 @@
 <suite name="E-Commerce (Opencart) Application Test Regression Suite"
 	verbose="4" thread-count="5" parallel="tests">
 
-	<test name="Login Page Test">
+	<listeners>
+		<listener
+			class-name="com.aventstack.chaintest.plugins.ChainTestListener" />
+		<listener
+			class-name="com.qa.opencart.listeners.TestAllureListener" />
+	</listeners>
+
+	<!--<test name="Login Page Test">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.LoginPageTest" />
 		</classes>
-	</test>
+	</test>-->
 
 	<!--<test name="Register Page Test">
 		<parameter name="browser" value="edge" />
@@ -15,12 +22,12 @@
 		</classes>
 	</test>-->
 
-	<test name="Accounts Page Test">
+	<!--<test name="Accounts Page Test">
 		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.AccountsPageTest" />
 		</classes>
-	</test>
+	</test>-->
 
 	<!--<test name="Search Results Page Test">
 		<parameter name="browser" value="chrome" />
