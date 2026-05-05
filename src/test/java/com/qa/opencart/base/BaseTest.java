@@ -20,7 +20,7 @@ import com.qa.opencart.pages.ProductInfoPage;
 import com.qa.opencart.pages.RegisterPage;
 import com.qa.opencart.pages.SearchResultsPage;
 
-//@Listeners({ChainTestListener.class, TestAllureListener.class}) //Another way to configure listener is in the TestNG.xml files. Please check out there.
+//@Listeners({ChainTestListener.class, TestAllureListener.class, AnnotationTransformer.class}) //Another way to configure listener is in the TestNG.xml files. Please check out there.
 public class BaseTest {
 	
 	private DriverFactory df;
