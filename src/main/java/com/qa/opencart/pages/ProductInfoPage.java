@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +17,7 @@ public class ProductInfoPage {
 	
 	private WebDriver driver;
 	private WebElementUtils elementUtils;
+	private static final Logger logger = LogManager.getLogger(ProductInfoPage.class);
 	private Map<String, String> productMap;
 
 	private final By header = By.tagName("h1");
@@ -29,19 +32,22 @@ public class ProductInfoPage {
 	
 	public String getProductHeader() {
 		String prodHeader = elementUtils.waitForElementVisibility(header, AppConstants.DEFAULT_SHORT_WAIT).getText();
-		System.out.println("Product Header is: "+ prodHeader);
+		//System.out.println("Product Header is: "+ prodHeader);
+		logger.info("Product Header is: "+ prodHeader);
 		return prodHeader;
 	}
 	
 	public int getProductImagesCount() {
 		int imgCount = elementUtils.waitForElementsVisibility(productImages, AppConstants.DEFAULT_SHORT_WAIT).size();
 		System.out.println("Total product images/thumbnails on the Product Info page are: "+ imgCount);
+		logger.info("Total product images/thumbnails on the Product Info page are: "+ imgCount);
 		return imgCount;
 	}
 	
 	private void getProductMetadata() {
 		List<WebElement> metaList = elementUtils.waitForElementsVisibility(productMetadata, AppConstants.DEFAULT_SHORT_WAIT);
-		System.out.println("Total size of product meta data is: "+ metaList.size());
+		//System.out.println("Total size of product meta data is: "+ metaList.size());
+		logger.info("Total size of product meta data is: "+ metaList.size());
 		for (WebElement e : metaList) {
 			String text = e.getText();
 			String[] meta = text.split(":");
@@ -55,7 +61,8 @@ public class ProductInfoPage {
 	
 	private void getProductPrice() {
 		List<WebElement> priceList = elementUtils.waitForElementsVisibility(productPrice, AppConstants.DEFAULT_SHORT_WAIT);
-		System.out.println("Total size of product price is: "+ priceList.size());
+		//System.out.println("Total size of product price is: "+ priceList.size());
+		logger.info("Total size of product price is: "+ priceList.size());
 		
 		String prodPrice = priceList.get(0).getText();
 		String exTaxPrice = priceList.get(1).getText().split(":")[1].trim(); // $2000.00
@@ -69,7 +76,8 @@ public class ProductInfoPage {
 		getProductMetadata();
 		getProductPrice();
 		
-		System.out.println("Product Complete Details are: " + productMap);
+		//System.out.println("Product Complete Details are: " + productMap);
+		logger.info("Product Complete Details are: " + productMap);
 		return productMap;
 	}
 

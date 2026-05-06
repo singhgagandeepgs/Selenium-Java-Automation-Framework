@@ -1,5 +1,7 @@
 package com.qa.opencart.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +13,7 @@ public class RegisterPage {
 	
 	private WebDriver driver;
 	private WebElementUtils elementUtils;
+	private static final Logger logger = LogManager.getLogger(RegisterPage.class);
 	
 	private final By firstName = By.id("input-firstname");
 	private final By lastName = By.id("input-lastname");
@@ -54,7 +57,8 @@ public class RegisterPage {
 		
 		WebElement successMsgEle = elementUtils.waitForElementVisibility(successMsg, AppConstants.DEFAULT_SHORT_WAIT);
 		String actualSuccessMsg = elementUtils.getElementText(successMsgEle);
-		System.out.println("Registration Success Message is: "+ actualSuccessMsg);
+		//System.out.println("Registration Success Message is: "+ actualSuccessMsg);
+		logger.info("Registration Success Message is: "+ actualSuccessMsg);
 		
 		elementUtils.doClick(logoutLink);
 		elementUtils.doClick(registerLink);
