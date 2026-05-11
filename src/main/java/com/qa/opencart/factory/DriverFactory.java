@@ -71,8 +71,39 @@ public class DriverFactory {
 	
 	public Properties initProperties() {
 		prop = new Properties();
+		FileInputStream fis = null;
+		
+		// mvn clean install -Denv="qa";
+		
+		String envName = System.getProperty("env");
+		
+		
 		try {
-			FileInputStream fis = new FileInputStream("src/test/resources/config/config.properties");
+			if(envName == null) {
+				fis = new FileInputStream("src/test/resources/config/config.properties");
+				logger.info("Test Cases are running in the default env as no env is passed as an argument (-D) in mvn CLI statement" + envName);
+			}
+			else {
+				switch (envName.toLowerCase().trim()) {
+				case "qa":
+					logger.info("Test Cases are running in the: **"+ envName + "** environment");
+					fis = new FileInputStream("src/test/resources/config/config_qa.properties");
+					break;
+				case "dev":
+					logger.info("Test Cases are running in the: **"+ envName + "** environment");
+					fis = new FileInputStream("src/test/resources/config/config_dev.properties");
+					break;
+				case "stage":
+					logger.info("Test Cases are running in the: **"+ envName + "** environment");
+					fis = new FileInputStream("src/test/resources/config/config_stage.properties");
+					break;
+				default:
+					logger.error("Wrong environment is passed");
+					throw new FrameworkExceptions("===INVALID ENVIRONMENT PASSED===");
+					//break;
+				}
+			}
+			
 			try {
 				prop.load(fis);
 			} catch (IOException e) {

@@ -9,6 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import com.aventstack.chaintest.plugins.ChainTestListener;
@@ -35,7 +36,7 @@ public class BaseTest {
 	
 	@Parameters({"browser"})
 	@BeforeTest
-	public void setup(String browserName) {
+	public void setup(@Optional ("chrome") String browserName) {
 		df = new DriverFactory();
 		prop = df.initProperties();
 		
