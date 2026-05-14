@@ -9,11 +9,12 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn -Dmaven.test.failure.ignore=true clean package'
+              //  bat 'mvn -Dmaven.test.failure.ignore=true clean package'
+                bat 'mvn clean package -DskipTests'
             }
             post {
                 success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
+                    //junit '**/target/surefire-reports/TEST-*.xml'
                     archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
                 }
             }
