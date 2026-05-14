@@ -97,6 +97,14 @@ public class DriverFactory {
 					logger.info("Test Cases are running in the: **"+ envName + "** environment");
 					fis = new FileInputStream("src/test/resources/config/config_stage.properties");
 					break;
+				case "uat":
+					logger.info("Test Cases are running in the: **"+ envName + "** environment");
+					fis = new FileInputStream("src/test/resources/config/config_uat.properties");
+					break;
+				case "prod":
+					logger.info("Test Cases are running in the: **"+ envName + "** environment");
+					fis = new FileInputStream("src/test/resources/config/config_prod.properties");
+					break;
 				default:
 					logger.error("Wrong environment is passed");
 					throw new FrameworkExceptions("===INVALID ENVIRONMENT PASSED===");
