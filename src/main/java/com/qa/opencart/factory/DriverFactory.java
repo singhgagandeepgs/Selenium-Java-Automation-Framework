@@ -79,7 +79,7 @@ public class DriverFactory {
 		
 		
 		try {
-			if(envName == null) {
+			if(envName == null || envName.trim().isEmpty()) {
 				fis = new FileInputStream("src/test/resources/config/config.properties");
 				logger.info("Test Cases are running in the default env as no env is passed as an argument (-D) in mvn CLI statement" + envName);
 			}
