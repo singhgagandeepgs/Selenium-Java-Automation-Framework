@@ -120,9 +120,9 @@
 					<suiteXmlFiles>
 						<!--<suiteXmlFile>
 							src/test/resources/testrunners/testng_regression.xml</suiteXmlFile>-->
-							<suiteXmlFile>
-							src/test/resources/testrunners/testng_sanity.xml</suiteXmlFile>
-						<!--<suiteXmlFile>${suite}</suiteXmlFile>-->
+							<!--<suiteXmlFile>
+							src/test/resources/testrunners/testng_sanity.xml</suiteXmlFile>-->
+						<suiteXmlFile>${suite}</suiteXmlFile>
 					</suiteXmlFiles>
 
 					<argLine>
