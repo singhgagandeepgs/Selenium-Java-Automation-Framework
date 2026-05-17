@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.safari.SafariOptions;
 
 public class OptionsManager {
 	
@@ -14,6 +15,7 @@ public class OptionsManager {
 	private ChromeOptions co;
 	private FirefoxOptions fo;
 	private EdgeOptions eo;
+	private SafariOptions so;
 	private static final Logger logger = LogManager.getLogger(OptionsManager.class);
 	
 	public OptionsManager(Properties prop) {
@@ -31,6 +33,10 @@ public class OptionsManager {
 			co.addArguments("--incognito");
 			logger.info("I am in Incognito Mode");
 		}
+		if(Boolean.parseBoolean(prop.getProperty("remote"))){
+			co.setCapability("browserName", "chrome");
+			logger.info("Running Chrome in Remote Mode");
+		}
 		return co;
 	}
 	
@@ -44,6 +50,10 @@ public class OptionsManager {
 		if(Boolean.parseBoolean(prop.getProperty("incognito"))) {
 			fo.addArguments("--incognito");
 			logger.info("I am in Incognito Mode");
+		}
+		if(Boolean.parseBoolean(prop.getProperty("remote"))){
+			fo.setCapability("browserName", "firefox");
+			logger.info("Running Firefox in Remote Mode");
 		}
 		return fo;
 	}
@@ -59,7 +69,27 @@ public class OptionsManager {
 			eo.addArguments("--incognito");
 			logger.info("I am in Incognito Mode");
 		}
+		if(Boolean.parseBoolean(prop.getProperty("remote"))){
+			eo.setCapability("browserName", "MicrosoftEdge");
+			logger.info("Running Edge in Remote Mode");
+		}
 		return eo;
+	}
+	
+	public SafariOptions getSafariOptions() {
+		so = new SafariOptions();
+		
+		/*
+		 * if(Boolean.parseBoolean(prop.getProperty("headless"))) {
+		 * so.addArguments("--headless"); logger.info("I am in Headless Mode"); }
+		 * if(Boolean.parseBoolean(prop.getProperty("incognito"))) {
+		 * so.addArguments("--incognito"); logger.info("I am in Incognito Mode"); }
+		 */
+		if(Boolean.parseBoolean(prop.getProperty("remote"))){
+			so.setCapability("browserName", "safari");
+			logger.info("Running Safari in Remote Mode");
+		}
+		return so;
 	}
 	
 }
